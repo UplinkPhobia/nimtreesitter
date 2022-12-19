@@ -1,6 +1,6 @@
 # Package
 
-version       = "0.1.1"
+version       = "0.1.2"
 author        = "Nimaoth"
 description   = "tree-sitter-zig wrapper for Zig"
 license       = "MIT"
