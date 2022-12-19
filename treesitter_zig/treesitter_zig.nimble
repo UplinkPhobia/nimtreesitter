@@ -1,6 +1,6 @@
 # Package
 
-version       = "0.1.2"
+version       = "0.1.3"
 author        = "Nimaoth"
 description   = "tree-sitter-zig wrapper for Zig"
 license       = "MIT"
@@ -9,7 +9,7 @@ skipDirs = @["tests"]
 
 # Dependencies
 
-requires "nimgen >= 0.5.3", "treesitter >= " & version
+requires "nimgen >= 0.5.3", "treesitter >= 0.1.1"
 
 var
   name = "treesitter_zig"
