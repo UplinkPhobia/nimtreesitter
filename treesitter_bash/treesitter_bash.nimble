@@ -30,3 +30,7 @@ before install:
 
 task test, "Run tests":
   exec "nim c --" & cc & ".linkerexe:\"g++\" -f -r tests/t" & name & ".nim"
+
+task buildDll, "Build DLL":
+  setupTask()
+  exec cmd & "nim c --app:lib --gc:none treesitter_bash/bash.nim"
