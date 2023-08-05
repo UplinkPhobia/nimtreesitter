@@ -9,7 +9,7 @@ skipDirs = @["tests"]
 
 # Dependencies
 
-requires "nimgen >= 0.5.0", "treesitter >= " & version
+requires "nimgen >= 0.5.3", "treesitter >= " & version
 
 var
   name = "treesitter_ruby"
@@ -30,3 +30,7 @@ before install:
 
 task test, "Run tests":
   exec "nim c --" & cc & ".linkerexe:\"g++\" -f -r tests/t" & name & ".nim"
+
+task buildDll, "Build DLL":
+  setupTask()
+  exec cmd & "nim c --app:lib --gc:none treesitter_ruby/ruby.nim"

@@ -1,18 +1,18 @@
 # Package
 
-version       = "0.1.1"
-author        = "genotrance"
-description   = "tree-sitter-python wrapper for Nim"
+version       = "0.1.3"
+author        = "Nimaoth"
+description   = "tree-sitter-zig wrapper for Zig"
 license       = "MIT"
 
 skipDirs = @["tests"]
 
 # Dependencies
 
-requires "nimgen >= 0.5.3", "treesitter >= " & version
+requires "nimgen >= 0.5.3", "treesitter >= 0.1.1"
 
 var
-  name = "treesitter_python"
+  name = "treesitter_zig"
   cmd = when defined(Windows): "cmd /c " else: ""
   cc = when defined(MacOSX): "clang" else: "gcc"
 
@@ -33,4 +33,4 @@ task test, "Run tests":
 
 task buildDll, "Build DLL":
   setupTask()
-  exec cmd & "nim c --app:lib --gc:none treesitter_python/python.nim"
+  exec cmd & "nim c --app:lib --gc:none treesitter_zig/zig.nim"
