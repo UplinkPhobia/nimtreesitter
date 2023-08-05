@@ -1,19 +1,22 @@
-import ospaths, strutils
+import ospaths, strutils, strformat
 
 let
   langs = @["bash", "c", "cpp", "css", "go", "html", "javascript",
             "ocaml", "php", "python", "ruby", "rust", "typescript",
-            "agda", "c_sharp", "haskell", "java", "scala"]
+            "agda", "c_sharp", "haskell", "java", "scala", "nim"]
   broken = @["julia"]
 
 var
   gen = false
   git = false
   test = false
+  install = false
   uninstall = false
   clean = false
+  lib = false
 
 for i in 3 .. paramCount():
+  echo paramStr(i)
   case paramStr(i):
     of "--gen":
       gen = true
@@ -25,6 +28,10 @@ for i in 3 .. paramCount():
       uninstall = true
     of "--clean":
       clean = true
+    of "--lib":
+      lib = true
+    of "--install":
+      install = true
 
 if clean:
   withDir("treesitter"):
@@ -61,6 +68,14 @@ for lang in langs:
       exec "nimble develop -y"
       exec "nimble setup"
       exec "nimble test"
+
+    if install:
+      exec "nimble setup"
+      exec "nimble install"
+
+    if lib:
+      echo "build dynamic lib"
+      exec fmt"nim --app:lib c treesitter_{lang}/{lang}.nim"
 
     if uninstall:
       discard gorgeEx("nimble uninstall -y " & flang)
