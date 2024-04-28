@@ -9,7 +9,7 @@ skipDirs = @["tests"]
 
 # Dependencies
 
-requires "nimgen >= 0.5.3", "treesitter >= " & version
+requires "nimgen >= 0.5.4", "treesitter >= " & version
 
 var
   name = "treesitter_c_sharp"
