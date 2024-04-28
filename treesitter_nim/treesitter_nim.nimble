@@ -1,6 +1,6 @@
 # Package
 
-version       = "0.1.1"
+version       = "0.1.2"
 author        = "Nimaoth"
 description   = "tree-sitter-nim wrapper for Nim"
 license       = "MIT"
@@ -23,6 +23,7 @@ task setup, "Checkout and generate":
   if gorgeEx(cmd & "nimgen").exitCode != 0:
     withDir(".."):
       exec "nimble install nimgen -y"
+      exec "nimble install nimgen -y"
   exec cmd & "nimgen " & name & ".cfg"
 
 before install:
@@ -33,4 +34,4 @@ task test, "Run tests":
 
 task buildDll, "Build DLL":
   setupTask()
-  exec cmd & "nim c --app:lib --gc:none treesitter_nim/nim.nim"
+  exec cmd & "nim c --app:lib --gc:none --cincludes:D:/dev/tree-sitter/lib/include --nimcache:nimcache treesitter_nim/nim.nim"
